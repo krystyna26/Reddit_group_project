@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles.css')}}"> -->
+    <title>Main page</title>
+</head>
+<body>
+    <div class=wrapper>                                                                                                                                                                                                                                                                   <div class="modal-footer">
+        <h1>Welcome on our hackaton page!</h1>
+        <h6>Welcome {{session['loggedName']}}</h6>
+        <p><a class="btn btn-secondary" href="/logof">log off</a></p>
+    </div>
+    <div class="table table-striped">
+        <h2>List of subreddits:</h2>
+        <li><a href=''>CARS</a></li>
+        <li><a href=''>FOOD</a></li>
+        <li><a href=''>FASSION</a></li>
+    </div>
+        <input type="submit" name="" value="">Add new subreddit</input>
+        <input type="submit" name="" value="">My page</input>
+
+
+
+    </div> <!--end of wrapper -->
+</body>
+</html>
