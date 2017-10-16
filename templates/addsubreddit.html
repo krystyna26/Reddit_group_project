@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <title>Add subreddit</title>
+</head>
+<body>
+    <div class='container'>
+        <form action='/addedsub' method='post'>
+            <h1>Add subreddit</h1>
+            <label for="title">Title:<input type="text" name="title" id=""></label>
+            <label for="url">URL:<input type="url" name="url" id="" accept="video/*"></label>
+
+            <label for="image">Image:<input type="file" name="image" id="" accept="image/*"></label>
+
+            <label for="subreddit">Choose a subreddit:</label>
+            <select id="choosesub" class="select" name ='subreddit'>
+                <option value="food">FOOD</option>
+                <option value="cars">CARS</option>
+                <option value="fassion">FASSION</option>
+                <option value="gaming">GAMING</option>
+            </select>
+            <label for="comment">Comment (optional):</label>
+            <textarea id="resizable" placeholder="Comment" name='comment' rows="5" cols="68" margin-left=5px padding="16"></textarea>
+            <input type="submit"  class="btn btn-primary" value="Add subreddit">
+            
+        </form>
+    </div>
+</body>
+</html>

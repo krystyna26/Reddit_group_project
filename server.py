@@ -89,7 +89,16 @@ def takeResults():
             mysql.query_db(query, data)
             return redirect('/')
 
+# test
+@app.route('/register', methods=['POST'])
+def test():
+	from jinja2 import Environment, FileSystemLoader
+	env = Environment(loader=FileSystemLoader('templates'))
+	template = env.get_template('test.html')
+	output_from_parsed_template = template.render(foo='Hello World!')
+	print output_from_parsed_template
 
+# mainpage
 @app.route('/mainpage')
 def mainpage():
 	# if 'id' in session:
@@ -105,51 +114,98 @@ def mainpage():
     return render_template("mainpage.html")
 
 # after click POST MESSAGE
-@app.route('/messages', methods=['post'])
-def messageprocess():
-    # created_at = request.form['message'].DateTimeField(auto_now_add=True)
-    userid = session['id'] 
-    query = "INSERT INTO messages (message, user_id, updated_at, created_at) VALUES (:message, :userid, NOW(),NOW())"
-    data={
-        'userid': userid,
-        'message': request.form['message'],
-    }
-    mysql.query_db(query, data)
-    return redirect('/xxxxxxx')
+# @app.route('/messages', methods=['post'])
+# def messageprocess():
+#     # created_at = request.form['message'].DateTimeField(auto_now_add=True)
+#     userid = session['id'] 
+#     query = "INSERT INTO messages (message, user_id, updated_at, created_at) VALUES (:message, :userid, NOW(),NOW())"
+#     data={
+#         'userid': userid,
+#         'message': request.form['message'],
+#     }
+#     mysql.query_db(query, data)
+#     return redirect('/xxxxxxx')
 
 
 
 # after click POST COMMENT
-@app.route('/comment', methods=['post'])
-def commentprocess():
-	userid = session['id'] 
-	query = "INSERT INTO comments (comment, created_at, updated_at, user_id, message_id) VALUES (:comment, NOW(),NOW(),:userid, :message_id)"
-    # ths is going to db when I create the comment
-	data={
-        'userid': userid,
-        'message_id': request.form['hiddenmessageid'],
-		'comment': request.form['comment'],
-    }
-	mysql.query_db(query, data)
-	return redirect('/xxxxx')
+# @app.route('/comment', methods=['post'])
+# def commentprocess():
+# 	userid = session['id'] 
+# 	query = "INSERT INTO comments (comment, created_at, updated_at, user_id, message_id) VALUES (:comment, NOW(),NOW(),:userid, :message_id)"
+#     # ths is going to db when I create the comment
+# 	data={
+#         'userid': userid,
+#         'message_id': request.form['hiddenmessageid'],
+# 		'comment': request.form['comment'],
+#     }
+# 	mysql.query_db(query, data)
+# 	return redirect('/xxxxx')
+
+# delete message
+# @app.route('/delete', methods=['post'])
+# def deletemessage():
+# 	print"delete"
+# 	userid = session['id'] 
+# 	query = "DELETE FROM messages WHERE messages.id = :message_id"
+# 	# ths is happening to db when I delete the message
+# 	print "message number: ",request.form['hiddenmessageidDEL']
+# 	data={
+# 		'userid': userid,
+# 		'message_id': request.form['hiddenmessageidDEL'],
+# 	}
+# 	mysql.query_db(query, data)
+# 	return redirect('/xxxxxxx')
+
+# add subreddit
+@app.route('/add', methods=['POST'])
+def addsubreddit():
+    return render_template("addsubreddit.html")
+
+# my page
+@app.route('/mypage', methods=['POST'])
+def mypage():
+    return render_template("mypage.html")
 
 
-@app.route('/delete', methods=['post'])
-def deletemessage():
-	print"delete"
-	userid = session['id'] 
-	query = "DELETE FROM messages WHERE messages.id = :message_id"
-	# ths is happening to db when I delete the message
-	print "message number: ",request.form['hiddenmessageidDEL']
+
+
+#add subreddit
+@app.route('/addedsub', methods=['GET', 'POST'])
+def addedSubreddit():
+	userid = session['id']
+	url = request.form['url']
+	title = request.form['title']
+	subreddit = request.form['subreddit']
+	comment = request.form['comment'] 
+	image = request.form['image']
+	#add subreddit to db
+	query = "INSERT INTO subreddits (url, created_at, updated_at, title, subreddit, comment, image) VALUES (:url, NOW(), NOW(), :title, :subreddit, :comment, :image)"
 	data={
 		'userid': userid,
-		'message_id': request.form['hiddenmessageidDEL'],
-	}
+		'url' : url,
+		'title': title,
+        'subreddit': request.form['subreddit'],
+        'comment': request.form['comment'],
+		'image': request.form['image']
+    }
 	mysql.query_db(query, data)
-	return redirect('/xxxxxxx')
+    # display in terminal
+	print title, url, image, subreddit, comment
+	return render_template("addedsub.html", title=title, url=url, image=image, subreddit=subreddit, comment=comment)
 
+
+
+
+
+
+
+
+
+
+#log off
 @app.route('/logof', methods=['GET'])
-def logof():
+def logoff():
 	return render_template('index.html') 	
 
 app.run(debug=True)

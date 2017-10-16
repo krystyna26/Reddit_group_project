@@ -3,28 +3,25 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <!-- <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles.css')}}"> -->
-    <title>Main page</title>
+    <title>My page</title>
 </head>
 <body>
     <div class="container">                                                                                                                                                                                                                                                                   <div class="modal-footer">
-        <h1>Welcome on our hackaton page!</h1>
-        <h6>Welcome {{session['loggedName']}}</h6>
+        <h1>Welcome on my page!</h1>
+        
         <p><a class="btn btn-secondary" href="/logof">log off</a></p>
     </div>
     <div class="table table-striped">
-        <h2>List of subreddits:</h2>
-        <li><a href=''>CARS</a></li>
-        <li><a href=''>FOOD</a></li>
-        <li><a href=''>FASSION</a></li>
-        <li><a href=''>GAMING</a></li>
-        <li><a href=''>MOVIES</a></li>
+        <h2>Info about me:</h2>
+        <p>take info from db</p>
+        <h2>List of  my subreddits:</h2>
+        <p>take info from db</p>
+        
     </div>
     <form action="/add" method ="post">
         <input type="submit"  class="btn btn-primary" value="Add new subreddit">
     </form>
-    <form action="/mypage"  method ="post" >
-        <input type="submit" class="btn btn-primary" value="My page">
-    </form>
+    
 
 
     </div> <!--end of container-->
